@@ -8,6 +8,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ZTI Project">
 <title>Strona główna!</title>
 <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -28,13 +31,13 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Panel administratora</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Opcje
+					<li><a href="#"></a></li>
+					<li class="dropdown"><a href="/" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-expanded="false">Panel administratora
 							<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
+							<li><a href="${contextPath}/admin/users">Użytkownicy</a></li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>

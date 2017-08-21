@@ -6,9 +6,6 @@ import com.zti.service.UserService;
 import com.zti.validator.UserValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,8 +26,8 @@ public class UserController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
-		if (!userService.isAuthenticated())
-			return "redirect:/welcome";
+		if (userService.isAuthenticated())
+			return "redirect:/home";
 		model.addAttribute("userForm", new User());
 
 		return "registration";
@@ -48,13 +45,13 @@ public class UserController {
 
 		securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-		return "redirect:/welcome";
+		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model, String error, String logout) {
-		if (!userService.isAuthenticated())
-			return "redirect:/welcome";
+		if (userService.isAuthenticated())
+			return "redirect:/home";
 		return "login";
 	}
 }

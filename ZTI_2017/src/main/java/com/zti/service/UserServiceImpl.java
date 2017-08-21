@@ -70,8 +70,13 @@ public class UserServiceImpl implements UserService {
 	public boolean isAuthenticated() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if ((auth instanceof AnonymousAuthenticationToken))
-			return true;
-		else
 			return false;
+		else
+			return true;
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 }

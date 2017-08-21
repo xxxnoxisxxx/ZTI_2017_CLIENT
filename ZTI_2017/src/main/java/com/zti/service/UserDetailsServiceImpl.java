@@ -1,10 +1,8 @@
 package com.zti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,8 +14,6 @@ import com.zti.repository.UserRepository;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
-import java.util.ArrayList;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired

@@ -8,6 +8,8 @@ public interface UserService {
 	public void save(User user);
 	public User findByUsername(String username);
 	public User findByEmail(String email);
+	public User findById(Long id);
+	public void deleteById(Long id);
 	public List<User> findAll();
 	public List<String> getAllLoggedUsers();
 	public boolean isAuthenticated();

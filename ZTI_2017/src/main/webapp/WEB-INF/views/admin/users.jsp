@@ -11,13 +11,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ZTI Project">
-<title>Strona główna!</title>
+<title>Użytkownicy</title>
 <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${contextPath}/resources/css/dataTables.bootstrap.min.css"
 	rel="stylesheet">
-<%-- <link href="${contextPath}/resources/css/buttons.bootstrap.min.css"
-	rel="stylesheet"> --%>
+<link href="${contextPath}/resources/css/buttons.bootstrap.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -29,7 +29,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">ZTI 2017</a>
+				<a class="navbar-brand" href="${contextPath}">ZTI 2017</a>
 			</div>
 
 			<div class="collapse navbar-collapse"
@@ -82,6 +82,7 @@
 						<th>E-mail</th>
 						<th>Nazwa użytkownika</th>
 						<th>Role</th>
+						<th>Edycja</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -93,6 +94,13 @@
 							<td><c:out value="${user.email}" /></td>
 							<td><c:out value="${user.username}" /></td>
 							<td><c:out value="${user.roles}" /></td>
+							<td><a
+								href="${contextPath}/admin/user/edit/<c:out value="${user.id}" />">
+									<button type="button" class="btn btn-sm btn-primary btn-block">
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"> </span>
+										Edytuj
+									</button>
+							</a></td>
 						</tr>
 
 					</c:forEach>
@@ -103,17 +111,28 @@
 			</table>
 		</div>
 	</div>
-<script src="${contextPath}/resources/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="${contextPath}/resources/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<%-- 		<script src="${contextPath}/resources/js/dataTables.buttons.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/buttons.bootstrap.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/jszip.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/pdfmake.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/vfs_fonts.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/buttons.html5.min.js" type="text/javascript"></script>
-	<script src="${contextPath}/resources/js/buttons.colVis.min.js" type="text/javascript"></script> --%>
+	<script src="${contextPath}/resources/js/jquery-3.2.1.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/jquery.dataTables.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/dataTables.bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/dataTables.buttons.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/buttons.bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/jszip.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/pdfmake.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/vfs_fonts.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/buttons.html5.min.js"
+		type="text/javascript"></script>
+	<script src="${contextPath}/resources/js/buttons.colVis.min.js"
+		type="text/javascript"></script>
 	<script>
 	  $(document).ready(function () {
           $('#user_list').DataTable({
@@ -124,7 +143,7 @@
               language: {
                   url: '${contextPath}/resources/json/datatable_polish.json'
               },
-             /* buttons: [
+             buttons: [
                   {
                       extend: 'excelHtml5', className: 'btn-primary', exportOptions: {
                       columns: ':visible(:not(.not-export-col))'
@@ -138,9 +157,8 @@
                   {extend: 'colvis', className: 'btn-primary'}
               ],
               columnDefs: [
-                  {"orderable": false, "targets": 7}
+                  {"orderable": false, "targets": 5}
               ],
-              iDisplayLength: 15 */
           });
       });
 

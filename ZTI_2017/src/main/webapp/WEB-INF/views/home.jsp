@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ZTI Project">
-<title>Strona główna!</title>
+<title>Strona główna</title>
 <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
 </head>
@@ -25,7 +26,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">ZTI 2017</a>
+				<a class="navbar-brand" href="${contextPath}">ZTI 2017</a>
 			</div>
 
 			<div class="collapse navbar-collapse"
@@ -33,8 +34,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="#"></a></li>
 					<li class="dropdown"><a href="/" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Panel administratora
-							<span class="caret"></span>
+						data-toggle="dropdown" role="button" aria-expanded="false">Panel
+							administratora <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="${contextPath}/admin/users">Użytkownicy</a></li>
@@ -55,7 +56,8 @@
 									value="${_csrf.token}" />
 							</form>
 
-							<a style="cursor:pointer" onclick="document.forms['logoutForm'].submit()">Wyloguj</a>
+							<a style="cursor: pointer"
+								onclick="document.forms['logoutForm'].submit()">Wyloguj</a>
 
 						</c:if></li>
 				</ul>
@@ -71,7 +73,9 @@
 						value="${_csrf.token}" />
 				</form>
 
-				<h2>Witaj! ${pageContext.request.userPrincipal.name}</h2>
+				<h2>
+					Witaj! ${pageContext.request.userPrincipal.name}
+				</h2>
 				<hr>
 
 			</c:if>

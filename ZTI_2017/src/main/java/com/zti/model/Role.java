@@ -1,34 +1,44 @@
 package com.zti.model;
-import javax.persistence.*;
+
 import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "role")
 public class Role {
 
 	private Long id;
-    private String name;
-    private String description;
-    private Set<User> users;
+	private String name;
+	private String description;
+	private Set<User> users;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    public Long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -37,16 +47,17 @@ public class Role {
 		this.description = description;
 	}
 
-    @ManyToMany(mappedBy = "roles")
-    public Set<User> getUsers() {
-        return users;
-    }
+	@JsonIgnore
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+	public Set<User> getUsers() {
+		return users;
+	}
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-    
-    @Override
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	@Override
 	public String toString() {
 		return description;
 	}

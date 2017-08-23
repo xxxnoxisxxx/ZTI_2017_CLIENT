@@ -106,14 +106,24 @@
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		
-<dependency>
+
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.0.1.RELEASE</version>
 		</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.8.6</version>
+</dependency>
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.8.6</version>
+</dependency>
 	</dependencies>
- <build>
-    <finalName>ZTI_2017_MVC</finalName>
-    </build>
+	<build>
+		<finalName>ZTI_2017_MVC</finalName>
+	</build>
 </project>

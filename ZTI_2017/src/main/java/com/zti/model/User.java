@@ -1,12 +1,23 @@
 package com.zti.model;
 
-import javax.persistence.*;
-
-
-
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.zti.serializer.UserSerializer;
+
 @Entity
+@JsonSerialize(using = UserSerializer.class)
 @Table(name = "myuser")
 public class User {
 	private Long id;
@@ -17,6 +28,23 @@ public class User {
 	private String password;
 	private String passwordConfirm;
 	private Set<Role> roles;
+
+	public User(Long id, String firstname, String lastname, String email, String username, String password,
+			String passwordConfirm, Set<Role> roles) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.passwordConfirm = passwordConfirm;
+		this.roles = roles;
+	}
+
+	public User() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

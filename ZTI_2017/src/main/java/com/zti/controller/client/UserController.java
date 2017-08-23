@@ -1,9 +1,4 @@
-package com.zti.controller;
-
-import com.zti.model.User;
-import com.zti.service.SecurityService;
-import com.zti.service.UserService;
-import com.zti.validator.UserValidator;
+package com.zti.controller.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +7,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.zti.model.User;
+import com.zti.service.SecurityService;
+import com.zti.service.UserService;
+import com.zti.validator.UserValidator;
 
 @Controller
 public class UserController {

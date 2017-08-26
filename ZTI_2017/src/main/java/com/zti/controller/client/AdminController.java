@@ -42,7 +42,6 @@ public class AdminController {
 	public String editUser(@ModelAttribute("userForm") User userForm, @PathVariable("id") Long id,
 			BindingResult bindingResult, Model model) {
 
-		// Long id = userForm.getId();
 		User user = userService.findById(id);
 
 		userValidator.validate(userForm, bindingResult);
@@ -66,6 +65,16 @@ public class AdminController {
 
 		userService.deleteById(id);
 
+	}
+
+	@RequestMapping(value = "addMeasurement", method = RequestMethod.GET)
+	public String addMeasurement(Model model) {
+		return "rest/addMeasurement";
+	}
+
+	@RequestMapping(value = "editMeasurement", method = RequestMethod.GET)
+	public String editMeasurement(Model model) {
+		return "rest/editMeasurement";
 	}
 
 }

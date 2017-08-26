@@ -10,6 +10,7 @@
 		<intercept-url pattern="/" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/home" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/rest/**" access="permitAll" />
 		<form-login login-page="/login" default-target-url="/home"
 			authentication-failure-url="/login?error" username-parameter="username"
 			password-parameter="password" />
@@ -20,6 +21,7 @@
 				error-if-maximum-exceeded="true" expired-url="/login.html"
 				session-registry-alias="sessionRegistry" />
 		</session-management>
+	 <csrf disabled="true" />
 	</http>
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="userDetailsServiceImpl">

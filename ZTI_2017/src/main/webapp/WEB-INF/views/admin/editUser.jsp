@@ -40,12 +40,9 @@
 					</a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="${contextPath}/admin/users">Użytkownicy</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="${contextPath}/admin/addMeasurement">REST - Dodawanie</a></li>
+							<li><a href="${contextPath}/admin/editMeasurement">REST - Edytowanie i usuwanie</a></li>
 						</ul></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

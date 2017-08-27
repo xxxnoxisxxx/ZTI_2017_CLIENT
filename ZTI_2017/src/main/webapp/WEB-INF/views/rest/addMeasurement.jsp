@@ -126,7 +126,7 @@
 	                contentType: "application/json; charset=utf-8",
 	                dataType: "json",
 	                complete: function() {
-	                    window.location.href = '${contextPath}/admin/addMeasurement'
+	                    window.location.href = '${contextPath}/home'
 	                },
 	                failure: function(errMsg) {
 	                    alert(errMsg);

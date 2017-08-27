@@ -2,7 +2,7 @@ package com.zti.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.zti.model.Measurement;
 
@@ -12,7 +12,7 @@ import com.zti.model.Measurement;
  * @author PawełN
  *
  */
-public interface MeasurementRepository extends JpaRepository<Measurement, Long> {
+public interface MeasurementRepository extends PagingAndSortingRepository<Measurement, Long> {
 	/**
 	 * Znajdywanie obiektów klasy Measurement po nazwie miasta
 	 * 
@@ -37,4 +37,12 @@ public interface MeasurementRepository extends JpaRepository<Measurement, Long> 
 	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
 	 */
 	public List<Measurement> findAll();
+
+	/**
+	 * Znajdywanie wszystkich obiektów klasy Measurement w posortowanej
+	 * kolejności według daty
+	 * 
+	 * @return Lista posortowanych obiektów klasy Measurement
+	 */
+	public List<Measurement> findAllByOrderByDateOfMeasurementAsc();
 }

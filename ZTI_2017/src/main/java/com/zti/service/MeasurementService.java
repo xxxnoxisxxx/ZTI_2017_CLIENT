@@ -61,4 +61,11 @@ public interface MeasurementService {
 	 * @return Zwraca utworzony obiekt
 	 */
 	public Measurement save(Measurement measurement);
+
+	/**
+	 * Zwraca liste wszystkich pomiarów posortowanych po dacie pomiaru
+	 * 
+	 * @return Lista wszystkich posortowanych obiektów klasy Measurement
+	 */
+	public List<Measurement> findAllByOrderByDateOfMeasurement();
 }

@@ -39,8 +39,8 @@ public class UserRestController {
 	 * Wyświetla pojedynczego użytkownika
 	 * 
 	 * @param id
-	 *            Indetyfikator użytkownika
-	 * @return
+	 *            Identyfikator użytkownika
+	 * @return Obiekt użytkownika
 	 */
 	@GetMapping("/rest/user/{id}")
 	public User getUser(@PathVariable("id") Long id) {

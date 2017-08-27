@@ -39,6 +39,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 */
 	User findById(Long id);
 
+	/**
+	 * Usuwanie obiektu klasy User
+	 * 
+	 * @param id
+	 *            Identyfikator obiektu
+	 */
 	@Transactional
 	void deleteById(Long id);
 }

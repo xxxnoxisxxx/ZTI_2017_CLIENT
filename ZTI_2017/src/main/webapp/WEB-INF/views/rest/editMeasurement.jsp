@@ -186,7 +186,7 @@
 	        function() {
 	            $
 	                .get(
-	                    "${contextPath}/rest/measurements",
+	                    "${contextPath}/rest/sortedMeasurements",
 	                    function(data, status) {
 	                        $
 	                            .each(

@@ -43,6 +43,18 @@ public class MeasurementRestController {
 	}
 
 	/**
+	 * Wyświetla posortowaną listę wszystkich pomiarów w bazie według daty
+	 * pomiaru
+	 * 
+	 * @return Lista wszystkich posortowanych pomiarów w bazie danych według
+	 *         daty pomiaru
+	 */
+	@GetMapping("rest/sortedMeasurements")
+	public List<Measurement> getSortedMeasurements() {
+		return measurementService.findAllByOrderByDateOfMeasurement();
+	}
+
+	/**
 	 * Wyświetla pojedynczy pomiar
 	 * 
 	 * @param id

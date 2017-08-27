@@ -84,4 +84,14 @@ public class MeasurementServiceImpl implements MeasurementService {
 		return measurementRepository.save(measurement);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.MeasurementService#findAllByOrderByDateOfCreated()
+	 */
+	@Override
+	public List<Measurement> findAllByOrderByDateOfMeasurement() {
+		return measurementRepository.findAllByOrderByDateOfMeasurementAsc();
+	}
+
 }

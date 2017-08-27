@@ -86,7 +86,7 @@ public class UserController {
 	 * 
 	 * @param model
 	 *            Model widoku
-	 * @return
+	 * @return Strona logowania
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {

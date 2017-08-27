@@ -17,32 +17,64 @@ import org.springframework.web.bind.annotation.RestController;
 import com.zti.model.Measurement;
 import com.zti.service.MeasurementService;
 
+/**
+ * RestController REST-API dla klasy Measurement
+ * 
+ * @author PawełN
+ *
+ */
 @RestController
 public class MeasurementRestController {
 
+	/**
+	 * Serwis pomiarów
+	 */
 	@Autowired
 	private MeasurementService measurementService;
 
+	/**
+	 * Wyświetla listę wszystkich pomiarów w bazie
+	 * 
+	 * @return Lista wszystkich pomiarów w bazie
+	 */
 	@GetMapping("/rest/measurements")
 	public List<Measurement> getMeasurements() {
 		return measurementService.findAll();
 	}
 
+	/**
+	 * Wyświetla pojedynczy pomiar
+	 * 
+	 * @param id
+	 *            Indetyfikator pomiaru
+	 * @return Żądany pomiary
+	 */
 	@GetMapping("/rest/measurement/{id}")
 	public Measurement getMeasurement(@PathVariable("id") Long id) {
 
-		Measurement measurement = measurementService.findById(id);
-		return measurement;
+		return measurementService.findById(id);
 	}
 
+	/**
+	 * Dodawnie pomiaru do bazy
+	 * 
+	 * @param measurement
+	 *            Model dodawanego obiektu
+	 * @return Dodany obiekt
+	 */
 	@PostMapping(value = "/rest/measurements")
 	public Measurement createMeasurement(@RequestBody Measurement measurement) {
 
-		Measurement obj = measurementService.save(measurement);
-
-		return obj;
+		return measurementService.save(measurement);
 	}
 
+	/**
+	 * Usuwanie obiektu z bazy
+	 * 
+	 * @param id
+	 *            Indetyfikator obiektu
+	 * @return Komunikat o sukcesie lub błędzie
+	 */
 	@DeleteMapping("/rest/measurement/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
 
@@ -62,6 +94,15 @@ public class MeasurementRestController {
 
 	}
 
+	/**
+	 * Aktualizowanie obiektu
+	 * 
+	 * @param id
+	 *            Identyfikator obiektu
+	 * @param measurement
+	 *            Model edytowane obiektu
+	 * @return Komunikat o błędzie lub edytowany model
+	 */
 	@PutMapping("/rest/measurement/{id}")
 	public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Measurement measurement) {
 

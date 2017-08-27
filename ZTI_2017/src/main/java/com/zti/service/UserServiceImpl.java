@@ -1,11 +1,13 @@
 package com.zti.service;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,80 +16,103 @@ import com.zti.model.User;
 import com.zti.repository.RoleRepository;
 import com.zti.repository.UserRepository;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+/**
+ * Implementacja serwisu dla klasy UserService
+ * 
+ * @author PawełN
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
+	/**
+	 * Repozytorium klasu User
+	 */
 	@Autowired
 	private UserRepository userRepository;
+	/**
+	 * Repozytorium klasy Role
+	 */
 	@Autowired
 	private RoleRepository roleRepository;
+	/**
+	 * Password encoder
+	 */
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Autowired
-	@Qualifier("sessionRegistry")
-	private SessionRegistry sessionRegistry;
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#save(com.zti.model.User)
+	 */
 	@Override
 	public void save(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		Set<Role> roles = new HashSet<Role>();
+		Set<Role> roles = new HashSet<>();
 		roles.add(roleRepository.findByName("ROLE_USER"));
 		user.setRoles(roles);
 		userRepository.save(user);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#findByUsername(java.lang.String)
+	 */
 	@Override
 	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#findAll()
+	 */
 	@Override
 	public List<User> findAll() {
-		List<User> users = userRepository.findAll();
-		return users;
+		return userRepository.findAll();
 	}
 
-	@Override
-	public List<String> getAllLoggedUsers() {
-		List<Object> principals = sessionRegistry.getAllPrincipals();
-
-		List<String> usersNamesList = new ArrayList<String>();
-
-		for (Object principal : principals) {
-			if (principal instanceof User) {
-				usersNamesList.add(((User) principal).getUsername());
-			}
-		}
-		return usersNamesList;
-	}
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#isAuthenticated()
+	 */
 	@Override
 	public boolean isAuthenticated() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if ((auth instanceof AnonymousAuthenticationToken))
-			return false;
-		else
-			return true;
+		return (auth instanceof AnonymousAuthenticationToken) ? false : true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#findByEmail(java.lang.String)
+	 */
 	@Override
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#findById(java.lang.Long)
+	 */
 	@Override
 	public User findById(Long id) {
 		return userRepository.findById(id);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.zti.service.UserService#deleteById(java.lang.Long)
+	 */
 	@Override
 	public void deleteById(Long id) {
 		userRepository.deleteById(id);
-		
+
 	}
 }

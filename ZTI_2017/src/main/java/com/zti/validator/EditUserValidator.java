@@ -12,19 +12,42 @@ import org.springframework.validation.Validator;
 import com.zti.model.User;
 import com.zti.service.UserService;
 
+/**
+ * Walidator używany w czasie edycji użytkownika
+ * 
+ * @author PawełN
+ *
+ */
 @Component
 public class EditUserValidator implements Validator {
+	/**
+	 * Serwis użytkowników
+	 */
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * Wzorzec dla adresu email
+	 */
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
+	 */
 	@Override
 	public boolean supports(Class<?> aClass) {
 		return User.class.equals(aClass);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
+	 * org.springframework.validation.Errors)
+	 */
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;
@@ -40,7 +63,7 @@ public class EditUserValidator implements Validator {
 
 		User userByEmail = userService.findByEmail(user.getEmail());
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
-		if ( userByEmail != null && userByEmail.getId() != user.getId()) {
+		if (userByEmail != null && userByEmail.getId() != user.getId()) {
 			errors.rejectValue("email", "Duplicate.userForm.email");
 		}
 
@@ -50,14 +73,14 @@ public class EditUserValidator implements Validator {
 				errors.rejectValue("email", "Incorrect.userForm.email");
 			}
 		}
-		
+
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-		
+
 		if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
 			errors.rejectValue("username", "Size.userForm.username");
 		}
 		User userByUsername = userService.findByUsername(user.getUsername());
-		if ( userByUsername != null && userByUsername.getId() != user.getId()) {
+		if (userByUsername != null && userByUsername.getId() != user.getId()) {
 			errors.rejectValue("username", "Duplicate.userForm.username");
 		}
 	}

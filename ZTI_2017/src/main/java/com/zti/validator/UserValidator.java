@@ -12,19 +12,42 @@ import org.springframework.validation.Validator;
 import com.zti.model.User;
 import com.zti.service.UserService;
 
+/**
+ * Walidator używany w czasie rejestrowania użytkownika
+ * 
+ * @author PawełN
+ *
+ */
 @Component
 public class UserValidator implements Validator {
+	/**
+	 * Serwis użytkowników
+	 */
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * Wzorzec dla adresu email
+	 */
 	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
 			Pattern.CASE_INSENSITIVE);
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.validation.Validator#supports(java.lang.Class)
+	 */
 	@Override
 	public boolean supports(Class<?> aClass) {
 		return User.class.equals(aClass);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.validation.Validator#validate(java.lang.Object,
+	 * org.springframework.validation.Errors)
+	 */
 	@Override
 	public void validate(Object o, Errors errors) {
 		User user = (User) o;

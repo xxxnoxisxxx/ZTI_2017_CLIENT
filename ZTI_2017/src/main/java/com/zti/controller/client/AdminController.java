@@ -106,7 +106,7 @@ public class AdminController {
 	 * @param id
 	 *            Idetyfikator użytkownika
 	 */
-	@RequestMapping(value = "/user/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/user/delete/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteUser(@PathVariable("id") Long id) {
 
 		userService.deleteById(id);
